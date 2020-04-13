@@ -305,16 +305,23 @@
                          // xoa hien thi bang
                          createTable.table.removeChild(target_tag);
                          // xoa thanh phan trong mang
-
-                        for(let i=0;i<arrayTemp.length;i++){
-                            if(arrayTemp[i].product_name === target_name){
-                                arrayTemp.splice(i,1);
-                            }
-                        }
-                          console.log("in mảng ArrayTemp sau khi xóa");
+                         console.log("in mảng ArrayTemp trước khi xóa");
                          arrayTemp.forEach(d=>{
                              console.log(d);
                          })
+                        let check_delete=false;
+                        for(let i=0;i<arrayTemp.length;i++){
+                            if(arrayTemp[i].product_name === target_name){
+                                arrayTemp.splice(i,1);
+                                check_delete=true;
+                            }
+                        }
+                         console.log(check_delete);
+
+                            console.log("in mảng ArrayTemp sau khi xóa");
+                             arrayTemp.forEach(d=>{
+                                 console.log(d);
+                             })
 
                      }
                     if(ev.target.name.toLowerCase()==='edit'){
