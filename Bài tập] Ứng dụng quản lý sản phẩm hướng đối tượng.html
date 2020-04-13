@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập] Ứng dụng quản lý sản phẩm sử dụng hàm</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        table{
+            width:1280px;
+            margin:10px auto;
+            border-collapse :collapse;
+        }
+        table caption{
+            text-align: left;
+            margin:15px 10px;
+            font-family: Arial,"Times New Roman",sans-serif;
+            font-size:1.2em;
+            color: #365eff;
+        }
+        table th{
+            display:none;
+        }
+        table td{
+            padding:5px 7px;
+        }
+        table tr td:nth-of-type(n+2){
+            text-align:center;
+        }
+        table tr td:nth-of-type(2) input[type="submit"]{
+            background: #00ff49;
+            border:1px solid #00ff49;
+        }
+        table tr td:nth-of-type(3) input[type="submit"]{
+            background: red;
+            border:1px solid red;
+        }
+        table tr td input[type="submit"] {
+            width:60%;
+            padding:7px 10px;
+
+            border-radius:4px;
+            color:white;
+            font-size: 1em;
+        }
+        table tr td input[type="text"]{
+
+            padding:7px 10px;
+            border:1px solid black;
+            border-radius:4px;
+        }
+        table tr td input[type="text"]:hover{
+            border:1px solid #5493ff;
+            border-radius:4px;
+        }
+        table tr td input[type="text"]:focus{
+            border:1px solid #5493ff;
+            border-radius:4px;
+        }
+
+        table tr td input[type="submit"]:hover{
+            cursor:pointer;
+
+        }
+        table tr td button{
+            width:60%;
+            padding:7px 10px;
+            border:1px solid ;
+            border-radius:4px;
+            color:white;
+            font-size: 1em;
+            background-color:#00ff49;
+
+        }
+        table tr td button:hover{
+            cursor: pointer;
+        }
+        table tr td button[name="delete"]{
+            background-color:red;
+        }
+        table tr td p input{
+            width:70%;
+            float:right;
+        }
+        table tr td p span{
+            width:25%;
+            horiz-align: right;
+        }
+        #name{
+            width:40%;
+        }
+        #ram{
+            width:10%;
+        }
+        #cpu{
+            width:10%;
+        }
+        #memory{
+            width:10%;
+        }
+        #edit{
+            width:20%;
+
+        }
+        #delete{
+            width:20%;
+        }
+        #edit_product{
+            background-color:#faff78;
+            color:black;
+        }
+        #editing{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+
+<script>
+
+
+
+    let arrayTemp=[{
+           product_name: "Nokia",
+           product_ram: '4gb',
+           product_cpu: 'i3',
+           product_memory: '16gb'
+        },
+        {
+            product_name: "Sony Xperia",
+            product_ram:'2gb',
+            product_cpu:'i5',
+            product_memory:'8gb'
+        },
+        {
+           product_name: "Xiao mi",
+            product_ram:'4gb',
+            product_cpu:'i7',
+            product_memory:'16gb'
+        }];
+
+        let createTable = {
+
+            makeTable(){
+                createTable.createTableHeading();
+                for(let i = 0 ;i < arrayTemp.length; i++){
+                    createTable.addRow(arrayTemp[i]);
+                }
+                document.body.appendChild(this.table);
+
+            },
+
+
+
+            // makeElement(element){
+            //     return document.createElement(element);
+            // },
+            createTableHeading(){
+                this.table = document.createElement("table");
+                this.table.border="1";
+                this.table.id="main_table";
+                this.table.innerHTML= "<caption>Production Name</caption>" +
+                    "<colgroup>" +
+                    "        <col id='name'>" +
+                    "        <col id='ram'>" +
+                    "        <col id='cpu'>" +
+                    "        <col id='memory'>" +
+                    "        <col id='edit'>" +
+                    "        <col id='delete'>" +
+                    "   </colgroup>" +
+                    "<tr> " +
+                    "<th scope='name'></th>" +
+                    "<th scope='ram'></th>" +
+                    "<th scope='cpu'></th>" +
+                    "<th scope='memory'></th>" +
+                    "<th scope='edit'></th>" +
+                    "<th scope='delete'></th>" +
+                    "</tr>" +
+                    "<tr>" +
+                    "<td><p><span>Product Name</span><input type='text'  id='product_name'></p>" +
+                    " <p><span>Ram</span><input type='text' id='product_ram'></p>" +
+                    " <p><span>Cpu</span><input type='text' id='product_cpu'></p>" +
+                    " <p><span>Memory</span><input type='text' id='product_memory'></p>" +
+                    "</td>" +
+                    "<td colspan='3'><button id='add_product'>Add</button><button id='edit_product'>Edit</button><p id='editing'>f</p></td>" +
+                    "<td colspan='2' rowspan='2'>Action</td>" +
+                    "</tr>"+
+                    "<tr style='background:yellow;text-align:center'>" +
+                        "<td>Product Name</td>" +
+                        "<td>Product Ram</td>" +
+                        "<td>Product CPU</td>" +
+                        "<td>Product Memory</td>" +
+                    "</tr>"
+                ;
+            },
+            addRow(value){
+                let tr=document.createElement("tr");
+                let tdname= document.createElement("td");
+                let tdram=document.createElement("td");
+                let tdcpu=document.createElement("td");
+                let tdmemory=document.createElement("td");
+                let td_edit= document.createElement("td");
+                let td_delete= document.createElement("td");
+                let input_edit= document.createElement("button");
+                let input_delete= document.createElement("button");
+                input_edit.name="edit";
+                input_edit.innerText="Edit";
+                input_delete.name="delete";
+                input_delete.innerText="Delete";
+                tdname.innerHTML= value.product_name;
+                tdram.innerHTML = value.product_ram;
+                tdcpu.innerHTML=value.product_cpu;
+                tdmemory.innerHTML=value.product_memory;
+                tdname.name=value.product_name;
+                tdram.name=value.product_ram;
+                tdcpu.name=value.product_cpu;
+                tdmemory.name=value.product_memory;
+                td_edit.appendChild(input_edit);
+                td_delete.appendChild(input_delete);
+                tr.appendChild(tdname);
+                tr.appendChild(tdram);
+                tr.appendChild(tdcpu);
+                tr.appendChild(tdmemory);
+                tr.appendChild(td_edit);
+                tr.appendChild(td_delete);
+                createTable.table.appendChild(tr);
+            }
+
+        }
+
+            createTable.makeTable();
+             let main_tab = document.getElementById("main_table");
+             let add_product= document.getElementById("add_product");
+             let edit_product= document.getElementById("edit_product");
+             let editing = document.getElementById("editing");
+             let input_name= document.getElementById("product_name");
+             let input_ram= document.getElementById("product_ram");
+             let input_cpu= document.getElementById("product_cpu");
+             let input_memory= document.getElementById("product_memory");
+             edit_product.style.display="none";
+             editing.style.display="none";
+             let edit_target;
+
+             edit_product.addEventListener('click',function(){
+                 console.log("acces edit button OK");
+
+                 if(input_name.value === "" || input_ram.value ==="" || input_cpu.value ==="" || input_memory.value===""){
+                    alert("không được để trống name, ram, cpu hoặc memory");
+                 }else{
+
+                     // sửa hiện thị trên bảng
+                     edit_target.children[0].innerText= input_name.value; // sửa product name
+                     edit_target.children[1].innerText= input_ram.value; // sửa product ram
+                     edit_target.children[2].innerText=input_cpu.value; // sửa product cpu
+                     edit_target.children[3].innerText= input_memory.value;// sửa product memory
+
+                     let id_value_name= edit_target.children[0].name;
+                     let value_name= input_name.value;
+                     let value_ram= input_ram.value;
+                     let value_cpu=input_cpu.value;
+                     let value_memory=input_memory.value;
+                     //sửa mảng
+
+                     let check_change= false;
+                     for (let i=0;i<arrayTemp.length;i++){
+                         if(arrayTemp[i].product_name === id_value_name){
+                             arrayTemp[i].product_name=value_name;
+                             arrayTemp[i].product_ram=value_ram;
+                             arrayTemp[i].product_cpu=value_cpu;
+                             arrayTemp[i].product_memory=value_memory;
+                             check_change=true;
+                         }
+                     }
+
+                     if(check_change){
+
+                         console.log("in mảng ArrayTemp sau khi thay đổi");
+                         arrayTemp.forEach(d=>{
+                             console.log(d);
+                         });
+
+                        this.style.display="none";
+                         editing.style.display="none";
+                        add_product.style.display="inline-block";
+                         alert("Edit Completed!");
+                     }else{
+                         console.log("Can't Edit");
+                     }
+
+                 }
+
+                 clearAllInput();
+             });
+
+             main_tab.addEventListener('click',function(ev){
+
+                 if(ev.target.matches("button")){
+
+                     if(ev.target.name.toLowerCase()==="delete"){
+                         alert("delete completed!");
+                         let target_tag = ev.target.parentNode.parentNode;
+                         let target_name = ev.target.parentNode.parentNode.firstElementChild.name;
+                         // xoa hien thi bang
+                         createTable.table.removeChild(target_tag);
+                         // xoa thanh phan trong mang
+
+                        for(let i=0;i<arrayTemp.length;i++){
+                            if(arrayTemp[i].product_name === target_name){
+                                arrayTemp.splice(i,1);
+                            }
+                        }
+                          console.log("in mảng ArrayTemp sau khi xóa");
+                         arrayTemp.forEach(d=>{
+                             console.log(d);
+                         })
+
+                     }
+                    if(ev.target.name.toLowerCase()==='edit'){
+
+
+                        edit_target= ev.target.parentNode.parentNode;
+                        edit_product.style.display="inline-block";
+                        add_product.style.display="none";
+                        editing.style.display="block";
+                        editing.innerHTML="Editting: "+ edit_target.firstElementChild.name;
+
+                        input_name.value=edit_target.firstElementChild.name;
+                        input_ram.value=edit_target.children[1].name;
+                        input_cpu.value=edit_target.children[2].name;
+                        input_memory.value=edit_target.children[3].name;
+                    }
+
+                 }
+
+             })
+
+            add_product.addEventListener('click',function(){
+
+                if(input_name.value === "" || input_ram.value ==="" || input_cpu.value ==="" || input_memory.value ===""){
+                    alert("Product name , ram cpu, memory không được để trống!");
+                }else{
+                    alert("OK to add");
+                    let newObject ={
+                        product_name:input_name.value,
+                        product_ram:input_ram.value,
+                        product_cpu:input_cpu.value,
+                        product_memory:input_memory.value
+                    };
+                    arrayTemp.push(newObject);
+                    console.log("in mảng ArrayTemp sau khi thêm");
+                    arrayTemp.forEach(d=>{
+                        console.log(d);
+                    })
+                    createTable.addRow(newObject);
+                    clearAllInput();
+                }
+
+            });
+
+function clearAllInput(){
+    input_ram.value="";
+    input_name.value="";
+    input_cpu.value="";
+    input_memory.value ="";
+}
+
+
+
+</script>
+</body>
+</html>
