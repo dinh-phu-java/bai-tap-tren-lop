@@ -26,14 +26,11 @@
         }
         this.makeCanvas=function(){
             this.canvas=document.getElementById("myCanvas");
-            // this.canvas.width=width;
-            // this.canvas.height=height;
             this.context = this.canvas.getContext("2d");
             this.context.beginPath();
             this.context.strokeStyle="white";
             this.context.arc(this.x,this.y,this.radius,0,2*Math.PI);
             this.context.stroke();
-           // document.body.appendChild(this.canvas);
         }
     }
 
