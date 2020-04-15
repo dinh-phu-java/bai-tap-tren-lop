@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            background-color:black;
+        }
+    </style>
+</head>
+<body>
+
+
+<script>
+    class Phone {
+        constructor(name,color,inch,camera,type,vendor){
+            this.name=name;
+            this.color=color;
+            this.inch=inch;
+            this.camera=camera;
+            this.type=type;
+            this.vendor=vendor;
+        }
+    }//ES6
+    
+    let Phone2= function(name,color,inch,camera,type,vendor){
+        this.name=name;
+        this.color=color;
+        this.inch=inch;
+        this.type=type;
+        this.vendor=vendor;
+    }//ES5
+
+    let Rectangle = function(width,height){
+        this.width=width;
+        this.height=height;
+        this.canvas = document.createElement("canvas");
+        this.getArea= function(){
+            return this.width * this.height;
+        }
+        this.getPerimeter=function(){
+            return 2*(this.width+this.height);
+        }
+        this.makeCanvas=function(){
+            this.canvas.width=500;
+            this.canvas.height=500;
+            this.context= this.canvas.getContext("2d");
+            this.context.fillStyle="red";
+            this.context.fillRect(100,100,this.width,this.height);
+            document.body.appendChild(this.canvas);
+        }
+    }
+
+    class Rectangle2{
+        constructor(width,height){
+            this.width=width;
+            this.height=height;
+        }
+        getArea(){
+            return this.width*this.height;
+        }
+        getPerimeter(){
+            return 2*(this.width+this.height);
+        }
+    }
+
+    let rec1= new Rectangle(30,40);
+   rec1.makeCanvas();
+
+</script>
+</body>
+</html>

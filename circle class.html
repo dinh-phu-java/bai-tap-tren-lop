@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Circle Class</title>
+    <style>
+        canvas{
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+    let Circle = function(x,y,radius){
+        this.x=x;
+        this.y=y;
+        this.radius=radius;
+        this.getArea= function(){
+            return this.radius * this.radius * Math.PI;
+        }
+        this.getPerimeter= function(){
+            return 2*this.radius*Math.PI;
+        }
+        this.makeCanvas=function(){
+            this.canvas=document.getElementById("myCanvas");
+            // this.canvas.width=width;
+            // this.canvas.height=height;
+            var ctx = this.canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
+            ctx.stroke();
+           // document.body.appendChild(this.canvas);
+        }
+    }
+
+    let c=new Circle(50,50,50);
+    c.makeCanvas();
+
+</script>
+
+</body>
+
+</html>
